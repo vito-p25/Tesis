@@ -18,7 +18,7 @@ inicio = time.time()
 
 #%% DEFINICION DE VARIABLES 
 
-path= 'C:/Users/Victoria/OneDrive/Documents/Proyecto ANII/CODIGO VERSION 14 DE ABRIL'
+#path= 'C:/Users/Victoria/OneDrive/Documents/Proyecto ANII/CODIGO VERSION 14 DE ABRIL'
 
 year_train = 2017
 year_test = 2018
@@ -31,13 +31,15 @@ alpha = 0.2
 
 
 estaciones = ['CAB','CAR','CEN','MIL','PAL','PAY','TAB','TOR']
-EST = estaciones[7]
+EST = estaciones[4]
 
 print(f'TRABAJANDO con estacion: {EST}')
 
 #%% SELECCION DE CONJUNTO DE FEATURES PARA FORWARD SELECTION
 
-dataset_dummy = c_fn.dataset(f'{path}/dataset', fh_temporal[0], EST, year_train, year_test, lag)
+path = 'C:\\Users\\Victoria\\OneDrive\\Documents\\Proyecto ANII\\CODIGO VERSION 14 DE ABRIL\\dataset'
+
+dataset_dummy = c_fn.dataset(path, fh_temporal[0], EST, year_train, year_test, lag)
 features_disponibles = list(dataset_dummy.data_train.columns)
 
 variables_a_testear = [var for var in features_disponibles if var.startswith(('S', 'B', 'C', 'PCA'))] #FILTRACION DE LO QUE QUIERO AGREGAR 
@@ -182,6 +184,9 @@ for fh in fh_temporal:
 
 
 #%% GRAFICO DE LOS MODELOS CON DISTINTOS CONJUNTOS DE FEATURES
+
+
+path = 'C:\\Users\\Victoria\\OneDrive\\Documents\\Proyecto ANII\\CODIGO VERSION 14 DE ABRIL'
 
 plt.figure(figsize=(10,6))
 
@@ -400,7 +405,7 @@ c_fn.plot_diag_conf(EST,quantiles,fh_temporal,m_c1,'Característica optima por f
 
 #%% INTENTO DE RED NEURONAL
 
-import torch.optim as optim
+'''import torch.optim as optim
 from torch.utils.data import Dataset,DataLoader
 
 fh = 1 
@@ -426,7 +431,7 @@ X_predich = modelo.predict(X_test)
 
 metricas = c_fn.metricas(X_predich,y_test,0.2,gcs)
 
-met = metricas.cal_metricas(quantiles)
+met = metricas.cal_metricas(quantiles)'''
     
     
     
